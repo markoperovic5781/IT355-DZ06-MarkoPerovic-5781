@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Advertisements</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>WebShop</h1>
+        <p>
+            <a th:href="@{/korpa}" class="btn btn-secondary">Korpa</a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Image</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each="advertisement : ${advertisements}">
+                <td th:text="${advertisement.title}"></td>
+                <td th:text="${advertisement.content}"></td>
+                <td th:if="${advertisement.imageUrl != null}">
+                    <img th:src="${advertisement.imageUrl}" width="100" height="100"/>
+                </td>
+                <td th:text="${advertisement.date}"></td>
+                <td th:text="${advertisement.price}"></td>
+
+                <td><a th:href="@{/dodaj/{id}(id=${advertisement.id})}"
+                       onclick="return confirm('Are you sure?')">Dodaj u korpu</a></td>
+
+
+                <!--<td><a th:href="@{/delete/{id}(id=${advertisement.id})}"
+                       onclick="return confirm('Are you sure?')">Delete</a>
+                </td>-->
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

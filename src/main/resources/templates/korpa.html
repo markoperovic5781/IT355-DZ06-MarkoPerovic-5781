@@ -1,0 +1,66 @@
+<!-- form.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Korpa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Korpa</h1>
+
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Image</th>
+            <th>Date</th>
+            <th></th>
+            <th></th>
+        </tr>
+
+
+        <tr th:each="advertisement : ${advertisements}"
+            >
+            <td th:text="${advertisement.title}"></td>
+            <td th:text="${advertisement.content}"></td>
+            <td th:if="${advertisement.imageUrl != null}">
+                <img th:src="${advertisement.imageUrl}" width="100" height="100"/>
+            </td>
+            <td th:text="${advertisement.date}"></td>
+            <td th:text="${advertisement.price} "></td>
+
+
+
+
+            <!--<td><a th:href="@{/delete/{id}(id=${advertisement.id})}"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>-->
+        </tr>
+    </table>
+</div>
+<p style="padding-left: 100px">Ukupna cena:<td th:text="${total}"></td></p>
+
+
+
+<div style="padding-left: 100px">
+<form>
+    <label for="fname">Ime:</label><br>
+    <input type="text" id="fname" name="fname"><br>
+    <label for="lname">Prezime:</label><br>
+    <input type="text" id="lname" name="lname"><br>
+    <label for="address">Adresa:</label><br>
+    <input type="text" id="address" name="address"><br>
+    <label for="brk">Br. Kartice:</label><br>
+    <input type="text" id="brk" name="brk">
+</form>
+    </div>
+
+<div style="padding-left: 100px"> <a th:href="@{/checkout}" class="btn btn-secondary">Checkout</a></div>
+
+
+</body>
+</html>
